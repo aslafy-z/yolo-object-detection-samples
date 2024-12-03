@@ -46,7 +46,9 @@ jobs:
           AUTH=$(git config --local http.${{ github.server_url }}/.extraheader)
           git config --local --unset http.${{ github.server_url }}/.extraheader
           git config --local http.${{ github.server_url }}/${{ github.repository }}.git/info/lfs/objects/batch.extraheader "$AUTH"
+          git lfs fetch --all
           git lfs pull
+          git lfs checkout
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
